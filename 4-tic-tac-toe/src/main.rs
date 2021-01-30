@@ -1,4 +1,5 @@
-// A simple 2 player Tic Tac Toe Game
+// Exercise 4: A simple 2 player Tic Tac Toe Game
+
 // This is a excerpt of the excellent tutorial by sunjay at https://github.com/sunjay/tic-tac-toe
 // Please checkout his tutorial for a more in depth explanation of code.
 
@@ -7,7 +8,7 @@ mod game;
 
 // Standard Library Import Statements
 use std::io::{self, Write}; // Import the "Write" trait
-use std::process; // Gives access to the exit function
+use std::process;           // Gives access to the exit function
 
 // Package Import Statements
 use game::{Game, Piece, Winner, Tiles, MoveError};
@@ -44,7 +45,7 @@ fn main() {
             Err(MoveError::TileNotEmpty {other_piece, row, col}) => eprintln!(
                 "The tile at position {}{} already has piece {} in it!",
                 row + 1,
-                (b'A' + col as u8) as char,
+                (b'A' + col as u8) as char, // Get the char `col` away from byte literal 'A' (i.e. A, B, or C)
                 match other_piece {
                     Piece::X => "x",
                     Piece::O => "o",
@@ -108,7 +109,7 @@ fn parse_move(input: &str) -> Result<(usize, usize), InvalidMove> {
         "B" | "b" => 1,
         "C" | "c" => 2,
 
-        invalid => return Err(InvalidMove(invalid.to_string())),
+        _ => return Err(InvalidMove(input.to_string())),
     };
 
     // If all checks pass, return a (row, col) tuple

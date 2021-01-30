@@ -1,3 +1,5 @@
+// Exercise 3: Traits and Structs
+
 mod duck;
 
 // This is required!!!!

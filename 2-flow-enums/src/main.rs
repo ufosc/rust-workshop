@@ -1,3 +1,5 @@
+// Example 2: Flow and Enums
+
 // Imports
 use std::env;
 use std::io::{self};

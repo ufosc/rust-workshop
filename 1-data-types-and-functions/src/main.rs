@@ -10,13 +10,16 @@ use std::io;
 // Params: &str
 // Returns: u32
 fn count_spaces(line: &str) -> u32 { 
-    let mut count: u32 = 0; // Initialize the counter as a u32 to match type
+    // Initialize the counter as a u32 to match type
+    let mut count: u32 = 0; 
     
+    // Count the spaces (' ') in the string
     for c in line.chars() {
         if c == ' ' { count += 1; }
     }
 
-    count // If the last statement of a function doesn't end with ";", it will return it.
+    // If the last statement of a function doesn't end with ";", it will return it.
+    count 
 }
 
 fn main() {
@@ -42,11 +45,16 @@ fn main() {
     // Tuples
     let random_chars: (char, char, char, char) = ('G', 'M', e_char, emoji_char);
     let (w, x, y, z) = random_chars; // Destructuring the tuple
-    let third_value: char = random_chars.2;
+    let _third_value: char = random_chars.2;
 
     // Arrays
     let array = [1, 2, 3]; // Allocated to the stack
     let zero_array = [0; 100]; // Initialize an array of size 100 with 0s 
+
+    // Ownership
+    let vector = vec!(array); // Create a vector from the array
+    let another_vector = vector; // MOVE the vector from `vector` to `another_vector`
+    println!("vector: {:?}\nanother_vector: {:?}", vector, another_vector); // THIS LINE WILL CAUSE AN ERROR TO DEMONSTRATE OWNERSHIP TRANSFER! COMMENT IT OUT TO COMPILE!
 
 
     // # Strings -- 2 Types
@@ -80,6 +88,5 @@ fn main() {
 
    // Parse the string for spaces
    let spaces = count_spaces(&to_count_string);
-   println!("\nYour sentence had {} spaces. Great job, {}.", spaces, your_name_string) 
-
+   println!("\nYour sentence had {} spaces. Great job, {}.", spaces, your_name_string);
 }
