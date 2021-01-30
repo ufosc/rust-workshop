@@ -1,0 +1,10 @@
+[workspace]
+
+members = [
+    "0-hello-world",
+    "1-data-types-and-functions",
+    "2-flow-enums",
+    "3-traits-and-structs",
+    "4-tic-tac-toe",
+]
+
