@@ -1,5 +1,6 @@
 use std::fmt;
 
+/// Duck Trait - If it swims like a duck and quacks like a duck than its a Duck
 pub trait Duck: fmt::Display {
     fn quack(&self) -> String;
     fn start_swiming(&mut self) -> Result<(), &'static str>;
@@ -17,13 +18,22 @@ pub struct FlightlessDuck {
 pub struct FlightfulDuck {
     pub name: String,
     pub swimming: bool,
+    pub flying: bool,
 }
 
+// Impl Display so that we can print our Structs directly!
 impl fmt::Display for FlightlessDuck {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "FlightlessDuck named {} and swim status is {}", self.name, self.swimming)
     }
 }
+
+impl fmt::Display for FlightfulDuck {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "FlightfulDuck named {} and swim status is {} and flight status is {}", self.name, self.swimming, self.flying)
+    }
+}
+
 
 impl Duck for FlightlessDuck {
 
@@ -88,14 +98,8 @@ impl Duck for FlightfulDuck {
     }
 }
 
-impl fmt::Display for FlightfulDuck {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "FlightfulDuck named {} and swim status is {}", self.name, self.swimming)
+impl FlightfulDuck {
+    pub fn is_flying(&self) -> bool {
+        self.is_flying()
     }
 }
-
-// impl fmt::Display for dyn Duck {
-//     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-//         write!(f, "A duck with a swim status of {}", self.is_swimming())
-//     }
-// }

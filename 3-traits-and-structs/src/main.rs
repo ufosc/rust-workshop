@@ -13,6 +13,7 @@ fn main() {
     let roger = duck::FlightfulDuck {
         name: "Roger".to_string(),
         swimming: false,
+        flying: false,
     };
     println!("{:?}", donald);
     println!("{}", donald);
@@ -22,15 +23,19 @@ fn main() {
     println!("{:?}", donald);
     println!("{:?}", roger);
 
-    for d in get_random_duck().iter() {
+    for d in get_ducks().iter() {
         println!("{}", d);
     }
 
     make_it_quack(&roger);
     make_it_quack(&donald);
+    donald.start_swiming().expect("Error trying to swim.");
 }
 
-fn get_random_duck() -> Vec<Box<dyn Duck>> {
+/// Gets a Vec of Ducks
+/// Box is needed because we might not know the size of Duck at compile time
+/// dyn is needed to access a Dynamic Trait
+fn get_ducks() -> Vec<Box<dyn Duck>> {
     vec![
         Box::new(duck::FlightlessDuck {
             name: "Donald".to_string(),
@@ -39,10 +44,12 @@ fn get_random_duck() -> Vec<Box<dyn Duck>> {
         Box::new(duck::FlightfulDuck {
             name: "Roger".to_string(),
             swimming: false,
+            flying: false
         }),
     ]
 }
 
+/// Takes in a reference to a dynamic Duck so we don't need a Box!
 fn make_it_quack(d: &dyn Duck) {
     println!("{}", d.quack());
 }
